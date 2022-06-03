@@ -40,7 +40,7 @@ public class Main {
 		dp[1] = BigInteger.ONE;
 		
 		for(int i = 2; i < dp.length; i++) {
-			dp[i] = dp[i-1].add(dp[i-2].multiply(BigInteger.TWO));
+			dp[i] = dp[i-1].add(dp[i-2].multiply(BigInteger.valueOf(2)));
 		}
 		
 		String temp;
