@@ -24,7 +24,7 @@ public class Main {
 	
 	public static void main(String[] args) throws Exception {
 
-//		System.setIn(new FileInputStream("./src/B1793/sample_data"));
+		System.setIn(new FileInputStream("./src/B1793/sample_data"));
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));		
 		
