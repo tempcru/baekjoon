@@ -46,8 +46,6 @@ public class Main {
 			}
 		});
 		
-		
-		 
 		System.out.println(search_empty());
 		
 	}
