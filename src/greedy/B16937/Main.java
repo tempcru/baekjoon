@@ -40,7 +40,7 @@ public class Main {
 	public static void main(String[] args) throws Exception {
 
 		// 1. Input Sample Data 
-//		System.setIn(new FileInputStream("./src/greedy/B16937/sample_data"));
+		System.setIn(new FileInputStream("./src/greedy/B16937/sample_data"));
 		
 		// 2. Read values
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));		
@@ -50,13 +50,13 @@ public class Main {
 		W = Integer.parseInt(st.nextToken());
 		N = Integer.parseInt(br.readLine().trim());
 		
-		stickers = new int[N][2];
+		stickers = new int[N][3];
 		
-		int r, c;
 		for(int i = 0; i < N; i++) {
 			st = new StringTokenizer(br.readLine()); 
 			stickers[i][0] = Integer.parseInt(st.nextToken());
 			stickers[i][1] = Integer.parseInt(st.nextToken());
+			stickers[i][2] = stickers[i][0] * stickers[i][1]; // 넓이
 		}
 		
 		MAX_AREA = 0;
@@ -71,7 +71,7 @@ public class Main {
 			for(int j = i + 1; j < stickers.length; j++) {
 				if(i == j) continue;
 				if(isCanStick(stickers[i], stickers[j])) { // 붙일 수 있다면
-					MAX_AREA = Math.max(MAX_AREA, ((stickers[i][0]*stickers[i][1]) + (stickers[j][0]*stickers[j][1])));
+					MAX_AREA = Math.max(MAX_AREA, stickers[i][2] + stickers[j][2]);
 				}
 			}
 		}
