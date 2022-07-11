@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.StringTokenizer;
 
 /**
@@ -25,7 +26,7 @@ import java.util.StringTokenizer;
 public class Main {
 
 	static boolean result;
-	
+	static char[] text;
 	static int T;
 	
 	static final String YES = "YES";
@@ -33,17 +34,46 @@ public class Main {
 	
 	public static void main(String[] args) throws Exception {
 
-		System.setIn(new FileInputStream("./src/divide_conquer/B1802/sample_data"));
+		//System.setIn(new FileInputStream("./src/divide_conquer/B1802/sample_data"));
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));		
+		
+		// 0. Read 비트배열갯수
 		T = Integer.parseInt(br.readLine().trim());
 		
-		char[] text;
+		int start, mid, end;
 		
-		for(int i = 0; i < T; i++) {
+		for(int i = 0; i < T; i++) { 
+			
+			// 1. Read 비트배열
+			text = br.readLine().toCharArray();
 			
 			
+			result = true; 
+			// 0 ~ N-1을 초기범위 지정
+			start = 0;
+			end = text.length - 1; 
 			
+			while(end > start) {
+				//중간 지점
+				mid = (end - start) >> 1;
+				
+				// 중간 지점을 기준으로 좌우 양끝에서 한개씩 비교
+				for (int j = start, k = end; j < mid; j++, k--) {
+					if(text[j] == text[k]) {
+						// 같으면 로직 종료
+						result = false;
+						end = start;
+						break;
+					}					
+				}
+				if(result) {
+					// 범위 재지정
+					// 0 ~ mid-1
+					// 마지막에는 start, end 모두 0이된다.
+					end = mid - 1;
+				}
+			}
 			
 			if(result) {
 				System.out.println(YES);
