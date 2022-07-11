@@ -20,11 +20,13 @@ public class Main {
 	static int allVisited;
 	private static int[][] vis; // 방문여부
 	
+	static long 연산횟수 = 0;
+	
 	private static final int INF = (int) (1e9); // 무한대 값 처리
 	
 	public static void main(String[] args) throws Exception {
 
-//		System.setIn(new FileInputStream("./src/graph_theory/B2098/sample_data"));
+		//System.setIn(new FileInputStream("./src/graph_theory/B2098/sample_data"));
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));		
 
@@ -53,10 +55,13 @@ public class Main {
 		// 0, 0000 0000 0000 0001 
 		// 0번째 마을에서 시작하고 0번째 마을
 		System.out.println(dfs(0, 1));
+		//System.out.println(연산횟수);
 	}
 	
 	public static int dfs(int cur, int visit) {
 			
+			//연산횟수++;
+		
 			//  10000000000000000 
 			//- 00000000000000001 
 			//= 01111111111111111
@@ -68,9 +73,13 @@ public class Main {
 	        }
 		
 			//이미 방문했다면 return, 중복제거
+			//INF와 비교하면안됨 이유는 visit == allVisited 에서 return INF가 가능하기 때문임
+			//그렇다면 vis[cur][visit] 값이 INF인데 해당 값은 이미 계산 한 경우이기 때문에
+			//구지 연산할 필요없이 INF 값으로 다시 return 해야하는 것임 그래서 -1과 비교해야함
 			if (vis[cur][visit] != -1) {
 	            return vis[cur][visit];
 	        }
+			
 			vis[cur][visit] = INF; //방문처리
 			
 			int next;
